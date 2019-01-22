@@ -1080,6 +1080,39 @@ bool IsAbsolutePath(const String& pathName)
     return false;
 }
 
+bool ResolveRelativePath(const String& path, String& newPath)
+{
+    const String relativePathElement = "../";
+    newPath = path;
+
+    int currentIndex = newPath.Find(relativePathElement);
+    while (currentIndex != String::NPOS)
+    {
+        if (currentIndex == 0)
+        {
+            return false;
+        }
+
+        int prevIndex = currentIndex - 1;
+        if (newPath[prevIndex] != '/')
+        {
+            return false;
+        }
+
+        --prevIndex;
+        while (prevIndex > 0 && newPath[prevIndex] != '/')
+        {
+            --prevIndex;
+        }
+
+        newPath.Erase(prevIndex, currentIndex - prevIndex + relativePathElement.Length() - 1);
+
+        currentIndex = newPath.Find(relativePathElement);
+    }
+
+    return true;
+}
+
 // ATOMIC BEGIN
 
 

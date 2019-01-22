@@ -184,6 +184,8 @@ ATOMIC_API WString GetWideNativePath(const String& pathName);
 /// Return whether a path is absolute.
 ATOMIC_API bool IsAbsolutePath(const String& pathName);
 
+ATOMIC_API bool ResolveRelativePath(const String& path, String& newPath);
+
 // ATOMIC BEGIN
 ATOMIC_API bool IsAbsoluteParentPath(const String& absParentPath, const String& fullPath);
 ATOMIC_API String GetSanitizedPath(const String& path);

@@ -899,8 +899,24 @@ String ResourceCache::SanitateResourceName(const String& nameIn) const
 {
     // Sanitate unsupported constructs from the resource name
     String name = GetInternalPath(nameIn);
-    name.Replace("../", "");
-    name.Replace("./", "");
+    String resolvedRelativeName;
+    if (ResolveRelativePath(name, resolvedRelativeName))
+    {
+        name.Swap(resolvedRelativeName);
+    }
+    else
+    {
+        ATOMIC_LOGERROR(ToString("The relative path [%s] is not resolved.", name.CString()));
+        name.Replace("../", "");
+    }
+
+#ifdef ATOMIC_DEBUG
+    if (name.Contains("./"))
+    {
+        ATOMIC_LOGWARNING(ToString("[./] is not allowed in the path [%s]", name.CString()));
+        name.Replace("./", "");
+    }
+#endif // #ifdef ATOMIC_DEBUG
 
     // If the path refers to one of the resource directories, normalize the resource name
     FileSystem* fileSystem = GetSubsystem<FileSystem>();
