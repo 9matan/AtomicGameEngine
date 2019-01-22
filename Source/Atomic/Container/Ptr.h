@@ -557,6 +557,9 @@ public:
     /// Move-construct from UniquePtr.
     UniquePtr(UniquePtr && up) : ptr_(up.Detach()) { }
 
+    /// Move-construct from another unique pointer allowing implicit upcasting.
+    template <class U> UniquePtr(UniquePtr<U> && rhs) : ptr_(rhs.Detach()) {}
+
     /// Move-assign from UniquePtr.
     UniquePtr& operator = (UniquePtr && up)
     {
@@ -653,6 +656,12 @@ template <class T, class ... Args> UniquePtr<T> MakeUnique(Args && ... args)
 template <class T, class ... Args> SharedPtr<T> MakeShared(Args && ... args)
 {
     return SharedPtr<T>(new T(std::forward<Args>(args)...));
+}
+
+template <class T>
+typename std::remove_reference<T>::type&& Move(T&& t) noexcept
+{
+    return std::move(t);
 }
 
 #endif
