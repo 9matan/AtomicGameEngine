@@ -33,6 +33,8 @@ if (ATOMIC_JAVASCRIPT)
     add_subdirectory(AtomicPlayer)
     add_subdirectory(AtomicJS)
     add_subdirectory(AtomicPlayerJS)
+else ()
+    set(ATOMIC_WEBVIEW OFF)
 endif ()
 
 if (ATOMIC_WEBVIEW)

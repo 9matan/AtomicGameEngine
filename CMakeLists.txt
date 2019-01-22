@@ -5,6 +5,9 @@ cmake_minimum_required(VERSION 3.3)
 
 set(ATOMIC_SOURCE_DIR ${Atomic_SOURCE_DIR})
 set(CMAKE_MODULE_PATH ${ATOMIC_SOURCE_DIR}/Build/CMake/Modules)
+# boost di
+set(BOOST_DI_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Submodules/BoostDI)
+set(BOOST_DI_INCLUDE ${BOOST_DI_PATH}/include)
 
 include(AtomicGit)
 include(AtomicUtils)
@@ -73,3 +76,6 @@ if (ATOMIC_DESKTOP AND ATOMIC_DEV_BUILD)
         endif ()
     endif ()
 endif ()
+
+add_subdirectory(Submodules/AITactics)
+add_subdirectory(Submodules/AITactics_Game)

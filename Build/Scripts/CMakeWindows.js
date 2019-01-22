@@ -26,7 +26,12 @@ namespace('build', function() {
     // graphics backend overrides, defaults DX11
     flags += " -DATOMIC_OPENGL=" + (config["opengl"] ? "ON" : "OFF");
     flags += " -DATOMIC_D3D11=" + (config["d3d9"] ? "OFF" : "ON");
-
+    
+    if(config["nojs"])
+        flags += " -DATOMIC_JAVASCRIPT=OFF";
+    if(config["nonet"])
+        flags += " -DATOMIC_DOTNET=OFF";
+    
     return flags;
 
   }
