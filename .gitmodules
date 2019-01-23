@@ -4,3 +4,9 @@
 [submodule "Submodules/AtomicExamples"]
 	path = Submodules/AtomicExamples
 	url = https://github.com/AtomicGameEngine/AtomicExamples
+[submodule "Submodules/AITactics"]
+	path = Submodules/AITactics
+	url = https://github.com/9matan/AITactics
+[submodule "Submodules/AITactics_Game"]
+	path = Submodules/AITactics_Game
+	url = https://github.com/9matan/AITactics_Game
