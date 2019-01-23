@@ -10,3 +10,6 @@
 [submodule "Submodules/AITactics_Game"]
 	path = Submodules/AITactics_Game
 	url = https://github.com/9matan/AITactics_Game
+[submodule "Submodules/BoostDI"]
+	path = Submodules/BoostDI
+	url = https://github.com/boost-experimental/di.git
