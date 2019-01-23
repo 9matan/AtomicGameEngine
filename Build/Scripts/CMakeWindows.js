@@ -27,11 +27,10 @@ namespace('build', function() {
     flags += " -DATOMIC_OPENGL=" + (config["opengl"] ? "ON" : "OFF");
     flags += " -DATOMIC_D3D11=" + (config["d3d9"] ? "OFF" : "ON");
     
-    if(config["nojs"])
-        flags += " -DATOMIC_JAVASCRIPT=OFF";
-    if(config["nonet"])
-        flags += " -DATOMIC_DOTNET=OFF";
-    
+    // scripts support
+    flags += " -DATOMIC_JAVASCRIPT=" + (config["nojs"] ? "OFF" : "ON");
+    flags += " -DATOMIC_DOTNET=" + (config["nonet"] ? "OFF" : "ON");
+
     return flags;
 
   }

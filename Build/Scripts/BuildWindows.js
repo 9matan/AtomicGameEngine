@@ -71,6 +71,10 @@ namespace('build', function() {
       flags += " -DATOMIC_OPENGL=" + (config["opengl"] ? "ON" : "OFF");
       flags += " -DATOMIC_D3D9=" + (config["d3d9"] ? "ON" : "OFF");
 
+      // scripts support
+      flags += " -DATOMIC_JAVASCRIPT=" + (config["nojs"] ? "OFF" : "ON");
+      flags += " -DATOMIC_DOTNET=" + (config["nonet"] ? "OFF" : "ON");
+      
       flags += "\"";
 
       return flags;
